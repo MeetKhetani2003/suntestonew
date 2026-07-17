@@ -76,7 +76,7 @@ export function StoreHeader({ cartCount, onCart, onSearch }: HeaderProps) {
   return <>
     <header className="site-header">
       <nav className="site-nav shell" aria-label="Main navigation">
-        <button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu"><Icon name="menu" /></button>
+        <button className="mobile-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu"><Icon name={menuOpen ? "close" : "menu"} /></button>
         <div className="nav-links">
           <div className="nav-menu-wrap"><button className="nav-link" onClick={() => setMenuOpen(!menuOpen)}>Shop <Icon name="chevron" size={14} /></button>{menuOpen && <div className="mega-menu"><div><p className="eyebrow">Discover by collection</p><Link href="/shop">All snacks <span>→</span></Link><Link href="/shop">Freeze-dried fruits <span>→</span></Link><Link href="/shop">Chocolate coated <span>→</span></Link><Link href="/shop">Fruit powders <span>→</span></Link></div><div className="mega-highlight"><p>Build your own box</p><span>Save 15% on 4 or more packs.</span><Link href="/shop" className="text-link">Create a box <Icon name="arrow" size={15} /></Link></div></div>}</div>
           <Link href="/story" className="nav-link">Our story</Link>
@@ -90,6 +90,16 @@ export function StoreHeader({ cartCount, onCart, onSearch }: HeaderProps) {
           <Link href="/cart" className="bag-action" aria-label="Cart" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}><Icon name="bag" /><span>{cartCount}</span></Link>
         </div>
       </nav>
+      {menuOpen && (
+        <div className="mobile-nav-dropdown" style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: '#fcfaf5', padding: '20px 0', borderBottom: '1px solid rgba(34,54,39,.08)', display: 'flex', flexDirection: 'column' }}>
+          <div className="shell" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <Link href="/shop" onClick={() => setMenuOpen(false)} style={{ fontSize: '18px', fontWeight: 600, padding: '10px 0', borderBottom: '1px solid #eee' }}>Shop All Snacks</Link>
+            <Link href="/story" onClick={() => setMenuOpen(false)} style={{ fontSize: '18px', fontWeight: 600, padding: '10px 0', borderBottom: '1px solid #eee' }}>Our Story</Link>
+            <Link href="/contact" onClick={() => setMenuOpen(false)} style={{ fontSize: '18px', fontWeight: 600, padding: '10px 0', borderBottom: '1px solid #eee' }}>Contact</Link>
+            <Link href="/account" onClick={() => setMenuOpen(false)} style={{ fontSize: '18px', fontWeight: 600, padding: '10px 0' }}>Account</Link>
+          </div>
+        </div>
+      )}
     </header>
   </>;
 }
@@ -207,7 +217,7 @@ export function ProductStorefront({ slug }: { slug: string }) {
         </div>
         <div className="product-layout" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px', alignItems: 'start' }}>
           <div className="product-gallery">
-            <div style={{ background: cardBg, height: '800px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <div className="product-main-image" style={{ background: cardBg, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
               <img src={product.image} alt={product.name} style={{ width: '85%', height: '85%', objectFit: 'contain', filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.15))' }} />
             </div>
           </div>

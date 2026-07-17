@@ -134,9 +134,9 @@ export function ProductCard({ product, onAdd, index = 0 }: { product: Product; o
       <div className="product-card-details" style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '0 4px' }}>
         <Link href={`/products/${product.slug}`} style={{ fontSize: '32px', fontFamily: 'var(--serif)', color: '#111', textDecoration: 'none', letterSpacing: '-0.02em', lineHeight: 1.1, display: 'block', marginBottom: '8px' }}>{product.name}</Link>
         <p style={{ fontSize: '15px', color: '#555', marginBottom: '24px', lineHeight: '1.5' }}>{product.note}</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+        <div className="product-buy-row">
           <strong style={{ fontSize: '20px', fontWeight: '500', color: '#111' }}>₹{product.price}</strong>
-          <button onClick={() => onAdd(product)} style={{ background: 'transparent', color: '#111', border: '1px solid #111', padding: '12px 24px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', transition: 'all 0.2s', textTransform: 'uppercase', letterSpacing: '0.05em' }} onMouseOver={(e) => { e.currentTarget.style.background = '#111'; e.currentTarget.style.color = '#fff'; }} onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#111'; }}>
+          <button onClick={() => onAdd(product)} className="product-buy-btn">
             Add to bag
           </button>
         </div>
@@ -178,11 +178,11 @@ function ClosingCTA() { return <section className="closing-cta"><div className="
 export function HomeStorefront() {
   const [cart, setCart] = useState(0); const [cartOpen, setCartOpen] = useState(false); const [searchOpen, setSearchOpen] = useState(false); const [bulkOpen, setBulkOpen] = useState(false);
   const add = () => { setCart((value) => value + 1); setCartOpen(true); };
-  return <><Announcement /><StoreHeader cartCount={cart} onCart={() => setCartOpen(true)} onSearch={() => setSearchOpen(true)} /><main><Hero onShop={() => document.getElementById("best-sellers")?.scrollIntoView({ behavior: "smooth" })} /><section className="trustbar shell"><TrustPill icon="leaf">Made with <b>whole fruit</b></TrustPill><TrustPill icon="spark"><b>Nothing strange</b> added</TrustPill><TrustPill icon="truck">Free shipping over <b>₹799</b></TrustPill><TrustPill icon="shield"><b>30-day</b> happy-snacking promise</TrustPill></section><section className="categories shell"><SectionHeading eyebrow="Find your fruit" title={<>A snack for every<br /><em>little moment.</em></>} copy="Real fruit, reimagined in bright, delicious ways. Pick a path—or follow your craving." /><div className="category-grid"><CategoryCard title="Freeze-dried fruits" count="01 · Crisp & pure" product={products[0]} index={0} image="/strawberry_hero.png" /><CategoryCard title="Chocolate-coated" count="02 · An indulgent layer" product={products[2]} index={1} image="/chocolate-hero.png" /><CategoryCard title="Fruit powders" count="03 · Spoonfuls of colour" product={products[3]} index={2} image="/lemon-hero.png" /></div></section><section className="best-sellers shell" id="best-sellers"><SectionHeading eyebrow="Most loved" title={<>The ones they<br /><em>come back for.</em></>} link="/shop" /><div className="product-grid">{products.slice(0, 4).map((product, index) => <ProductCard product={product} index={index} onAdd={add} key={product.slug} />)}</div></section><WhyFreezeDried /><Showcase /><ComboSection onAdd={add} /><section className="bulk-section shell" id="bulk" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', marginTop: '140px', borderRadius: '32px', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.08)', alignItems: 'stretch', background: '#f8f6f0' }}>
-  <div className="bulk-art" style={{ background: '#fcebe9', position: 'relative', overflow: 'hidden', minHeight: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  return <><Announcement /><StoreHeader cartCount={cart} onCart={() => setCartOpen(true)} onSearch={() => setSearchOpen(true)} /><main><Hero onShop={() => document.getElementById("best-sellers")?.scrollIntoView({ behavior: "smooth" })} /><section className="trustbar shell"><TrustPill icon="leaf">Made with <b>whole fruit</b></TrustPill><TrustPill icon="spark"><b>Nothing strange</b> added</TrustPill><TrustPill icon="truck">Free shipping over <b>₹799</b></TrustPill><TrustPill icon="shield"><b>30-day</b> happy-snacking promise</TrustPill></section><section className="categories shell"><SectionHeading eyebrow="Find your fruit" title={<>A snack for every<br /><em>little moment.</em></>} copy="Real fruit, reimagined in bright, delicious ways. Pick a path—or follow your craving." /><div className="category-grid"><CategoryCard title="Freeze-dried fruits" count="01 · Crisp & pure" product={products[0]} index={0} image="/strawberry_hero.png" /><CategoryCard title="Chocolate-coated" count="02 · An indulgent layer" product={products[2]} index={1} image="/chocolate-hero.png" /><CategoryCard title="Fruit powders" count="03 · Spoonfuls of colour" product={products[3]} index={2} image="/lemon-hero.png" /></div></section><section className="best-sellers shell" id="best-sellers"><SectionHeading eyebrow="Most loved" title={<>The ones they<br /><em>come back for.</em></>} link="/shop" /><div className="product-grid">{products.slice(0, 4).map((product, index) => <ProductCard product={product} index={index} onAdd={add} key={product.slug} />)}</div></section><WhyFreezeDried /><Showcase /><ComboSection onAdd={add} /><section className="bulk-section-custom shell" id="bulk">
+  <div className="bulk-art-custom">
     <img src="/strawberry_hero.png" alt="Strawberry Crisp bulk" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', transform: 'scale(1.15)' }} />
   </div>
-  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 12%' }}>
+  <div className="bulk-copy-custom">
     <p className="eyebrow" style={{ color: '#8b9a8b', letterSpacing: '0.15em', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' }}>For workplaces & gatherings</p>
     <h2 style={{ fontSize: 'clamp(48px, 5vw, 64px)', lineHeight: 1.05, margin: '20px 0 30px', color: '#1a251b', letterSpacing: '-0.02em', fontFamily: 'var(--serif)' }}>Good snacks<br />make good <em style={{ color: '#527a54', fontStyle: 'italic' }}>company.</em></h2>
     <p style={{ color: '#556655', fontSize: '16px', lineHeight: 1.6, maxWidth: '420px', marginBottom: '40px' }}>Put better fruit on the table. From team pantries to party favours, we&apos;d love to make something delicious happen with our wholesale boxes.</p>
@@ -215,9 +215,9 @@ export function ProductStorefront({ slug }: { slug: string }) {
         <div className="breadcrumb" style={{ marginBottom: '40px' }}>
           <Link href="/shop">Shop</Link><span> / </span><Link href="/shop">{product.kind}</Link><span> / </span><span style={{ color: '#111' }}>{product.name}</span>
         </div>
-        <div className="product-layout" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px', alignItems: 'start' }}>
+        <div className="product-layout pdp-layout">
           <div className="product-gallery">
-            <div className="product-main-image" style={{ background: cardBg, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <div className="product-main-image" style={{ background: cardBg }}>
               <img src={product.image} alt={product.name} style={{ width: '85%', height: '85%', objectFit: 'contain', filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.15))' }} />
             </div>
           </div>
@@ -516,8 +516,8 @@ export function AccountStorefront() {
         <h1 style={{ fontFamily: 'var(--serif)', fontSize: '48px', marginBottom: '10px' }}>My Account</h1>
         <p style={{ color: '#556655', marginBottom: '60px' }}>Welcome back, Aarav.</p>
         
-        <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: '60px' }}>
-          <aside style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div className="account-layout">
+          <aside className="account-nav">
             {["Orders", "Profile Details", "Addresses"].map(tab => (
               <button 
                 key={tab} 
@@ -534,7 +534,7 @@ export function AccountStorefront() {
                 <h3 style={{ fontSize: '24px', fontFamily: 'var(--serif)', marginBottom: '24px' }}>Order History</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   {dummyOrders.map(order => (
-                    <div key={order.id} style={{ border: '1px solid var(--line)', borderRadius: '24px', padding: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={order.id} className="account-order-card">
                       <div>
                         <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '8px' }}>
                           <strong style={{ fontSize: '18px' }}>{order.id}</strong>
@@ -543,7 +543,7 @@ export function AccountStorefront() {
                         <p style={{ color: '#556655', fontSize: '14px', marginBottom: '16px' }}>{order.date}</p>
                         <p style={{ fontSize: '14px' }}>{order.items.join(" · ")}</p>
                       </div>
-                      <div style={{ textAlign: 'right' }}>
+                      <div className="account-order-total">
                         <strong style={{ display: 'block', fontSize: '20px', marginBottom: '12px' }}>₹{order.total}</strong>
                         <button className="button button-outline" style={{ padding: '10px 20px', fontSize: '13px' }}>View receipt</button>
                       </div>
@@ -641,57 +641,57 @@ export function StoryStorefront() {
       <main className="story-page" style={{ paddingBottom: '100px' }}>
         
         {/* Story Hero */}
-        <section style={{ background: 'linear-gradient(180deg, #f8f6f0 0%, #fff 100%)', paddingTop: '120px', paddingBottom: '80px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-          <div className="shell" style={{ position: 'relative', zIndex: 2, maxWidth: '800px', margin: '0 auto' }}>
+        <section className="story-hero-section">
+          <div className="shell story-hero-content">
             <p className="eyebrow" style={{ color: '#54704f' }}>Our Story</p>
-            <h1 style={{ fontSize: 'clamp(56px, 7vw, 84px)', fontFamily: 'var(--serif)', lineHeight: 1.05, margin: '20px 0 30px', color: '#1a251b', letterSpacing: '-0.02em' }}>
+            <h1>
               We&apos;re here for a <br/><em style={{ color: '#527a54', fontStyle: 'italic' }}>fruitful</em> future.
             </h1>
-            <p style={{ fontSize: '20px', color: '#556655', lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
+            <p>
               What started as a search for a better snack for our own families turned into a mission to preserve the honest, bright joy of whole fruit.
             </p>
           </div>
           
           {/* Decorative floating fruits */}
-          <img src="/strawberry_hero.png" alt="" style={{ position: 'absolute', width: '200px', top: '10%', left: '-20px', transform: 'rotate(15deg)', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))', zIndex: 1, opacity: 0.6 }} />
-          <img src="/mango_hero.png" alt="" style={{ position: 'absolute', width: '240px', bottom: '10%', right: '-40px', transform: 'rotate(-10deg)', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))', zIndex: 1, opacity: 0.6 }} />
+          <img src="/strawberry_hero.png" alt="" className="story-hero-fruit-1" />
+          <img src="/mango_hero.png" alt="" className="story-hero-fruit-2" />
         </section>
 
         {/* The Philosophy */}
-        <section className="shell" style={{ marginTop: '100px' }}>
-          <div style={{ background: '#f8f6f0', borderRadius: '40px', padding: '80px', display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ flex: 1, minWidth: '300px' }}>
+        <section className="shell story-philosophy-section">
+          <div className="story-philosophy-container">
+            <div className="story-philosophy-text">
               <p className="eyebrow">Our Philosophy</p>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: '48px', marginBottom: '24px', lineHeight: 1.1 }}>Rooted in <em>respect.</em></h2>
-              <p style={{ color: '#556655', lineHeight: 1.7, fontSize: '18px', marginBottom: '24px' }}>
+              <h2>Rooted in <em>respect.</em></h2>
+              <p>
                 We believe that nature already perfected the snack. There is no need for added sugars, strange preservatives, or complicated ingredient lists.
               </p>
-              <p style={{ color: '#556655', lineHeight: 1.7, fontSize: '18px' }}>
+              <p>
                 By partnering directly with farmers we trust, we ensure that every piece of fruit is harvested at its absolute peak of ripeness, and gently preserved to lock in that exact moment.
               </p>
             </div>
-            <div style={{ position: 'relative', width: '100%', maxWidth: '400px', borderRadius: '32px', background: '#f6d154', overflow: 'hidden', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ position: 'absolute', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 }}></div>
-              <img src="/pineapple-hero.png" alt="Pineapple" style={{ position: 'relative', width: '280px', transform: 'rotate(5deg)', filter: 'drop-shadow(0 30px 50px rgba(0,0,0,0.15))', zIndex: 1 }} />
+            <div className="story-philosophy-image">
+              <div className="story-philosophy-bg"></div>
+              <img src="/pineapple-hero.png" alt="Pineapple" />
             </div>
           </div>
         </section>
 
         {/* The Process Steps */}
-        <section className="shell" style={{ marginTop: '140px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '80px', maxWidth: '600px', margin: '0 auto 60px' }}>
+        <section className="shell story-process-section">
+          <div className="story-process-header">
             <p className="eyebrow">How we do it</p>
-            <h2 style={{ fontFamily: 'var(--serif)', fontSize: '40px' }}>Slowly, with care.</h2>
+            <h2>Slowly, with care.</h2>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+          <div className="story-process-grid">
             {[
               { num: '01', title: 'Peak Harvest', desc: 'We wait patiently. Our fruit stays on the branch until the sun brings out its fullest, sweetest flavour.', icon: 'leaf' as IconName },
               { num: '02', title: 'Gentle Preservation', desc: 'Using careful freeze-drying methods, we remove the water but keep the vibrant colour, nutrients, and crunch.', icon: 'spark' as IconName },
               { num: '03', title: 'Honest Packaging', desc: 'No sneaky ingredients are added. What goes into our pouches is just 100% real fruit, ready to be enjoyed anywhere.', icon: 'shield' as IconName }
             ].map(step => (
-              <div key={step.num} style={{ background: '#fff', border: '1px solid #e0dfd5', borderRadius: '24px', padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                <div style={{ background: '#eef0e8', color: 'var(--moss)', width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
+              <div key={step.num} className="story-process-card">
+                <div className="story-process-icon">
                   <Icon name={step.icon} size={24} />
                 </div>
                 <span style={{ fontSize: '13px', fontWeight: 600, color: '#8b9a8b', marginBottom: '8px' }}>Phase {step.num}</span>
@@ -703,26 +703,26 @@ export function StoryStorefront() {
         </section>
 
         {/* Mission / Quote */}
-        <section className="shell" style={{ marginTop: '140px', textAlign: 'center' }}>
-          <div style={{ background: 'var(--moss)', color: '#fff', borderRadius: '40px', padding: '100px 40px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'relative', zIndex: 2, maxWidth: '700px', margin: '0 auto' }}>
+        <section className="shell story-quote-section">
+          <div className="story-quote-container">
+            <div className="story-quote-content">
               <Icon name="star" size={32} />
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(32px, 4vw, 48px)', lineHeight: 1.2, margin: '30px 0', fontWeight: 400 }}>
+              <h2>
                 &quot;We&apos;re redefining what a snack can be. Something that feels light, tastes decadent, and treats the earth with kindness.&quot;
               </h2>
-              <p style={{ opacity: 0.8, fontSize: '16px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>The Sustento Team</p>
+              <p>The Sustento Team</p>
             </div>
             
             {/* Background elements */}
-            <div style={{ position: 'absolute', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)', top: '-100px', right: '-100px', zIndex: 0 }}></div>
+            <div className="story-quote-bg"></div>
           </div>
         </section>
         
         {/* Next step CTA */}
-        <section className="shell" style={{ marginTop: '100px', textAlign: 'center', padding: '60px 0' }}>
+        <section className="shell story-cta-section">
           <p className="eyebrow">Taste the difference</p>
-          <h2 style={{ fontFamily: 'var(--serif)', fontSize: '40px', marginBottom: '30px' }}>Ready to explore?</h2>
-          <Link href="/shop" className="button button-dark" style={{ display: 'inline-flex', padding: '16px 36px', fontSize: '16px', borderRadius: '30px' }}>Shop the collection <Icon name="arrow" size={16} /></Link>
+          <h2>Ready to explore?</h2>
+          <Link href="/shop" className="button button-dark story-cta-btn">Shop the collection <Icon name="arrow" size={16} /></Link>
         </section>
 
       </main>
@@ -741,25 +741,25 @@ export function ContactStorefront() {
     <>
       <Announcement />
       <StoreHeader cartCount={cart} onCart={() => setCartOpen(true)} onSearch={() => setSearchOpen(true)} />
-      <main className="shell" style={{ paddingTop: '100px', paddingBottom: '100px', maxWidth: '800px', margin: '0 auto' }}>
+      <main className="shell contact-page-section">
         <p className="eyebrow" style={{ textAlign: 'center' }}>Get in touch</p>
-        <h1 style={{ fontSize: 'clamp(48px, 6vw, 72px)', fontFamily: 'var(--serif)', marginBottom: '20px', textAlign: 'center' }}>We&apos;d love to <em>hear from you.</em></h1>
-        <p style={{ fontSize: '18px', color: '#556655', marginBottom: '60px', textAlign: 'center' }}>Whether you have a question about our fruit, your order, or just want to say hello, we&apos;re here.</p>
+        <h1>We&apos;d love to <em>hear from you.</em></h1>
+        <p className="contact-subtitle">Whether you have a question about our fruit, your order, or just want to say hello, we&apos;re here.</p>
         {!done ? (
-          <form onSubmit={submit} className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px', background: '#f8f6f0', padding: '40px', borderRadius: '32px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-              <label style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', fontWeight: 600 }}>First name<input required style={{ padding: '12px', border: '1px solid #ddd', borderRadius: '8px', marginTop: '6px' }} /></label>
-              <label style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', fontWeight: 600 }}>Last name<input required style={{ padding: '12px', border: '1px solid #ddd', borderRadius: '8px', marginTop: '6px' }} /></label>
+          <form onSubmit={submit} className="contact-form">
+            <div className="contact-form-row">
+              <label>First name<input required /></label>
+              <label>Last name<input required /></label>
             </div>
-            <label className="full" style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', fontWeight: 600 }}>Email<input required type="email" style={{ padding: '12px', border: '1px solid #ddd', borderRadius: '8px', marginTop: '6px' }} /></label>
-            <label className="full" style={{ display: 'flex', flexDirection: 'column', fontSize: '13px', fontWeight: 600 }}>Message<textarea required style={{ padding: '16px', border: '1px solid #ddd', borderRadius: '8px', minHeight: '150px', background: '#fff', marginTop: '6px', resize: 'vertical' }}></textarea></label>
-            <button className="button button-dark" style={{ padding: '16px 36px', justifySelf: 'start', borderRadius: '30px' }}>Send message <Icon name="arrow" size={16} /></button>
+            <label className="full">Email<input required type="email" /></label>
+            <label className="full">Message<textarea required></textarea></label>
+            <button className="button button-dark contact-submit">Send message <Icon name="arrow" size={16} /></button>
           </form>
         ) : (
-          <div style={{ padding: '60px', background: '#f8f6f0', borderRadius: '32px', textAlign: 'center' }}>
-            <div style={{ background: 'var(--moss)', width: '80px', height: '80px', borderRadius: '50%', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}><Icon name="check" size={40} /></div>
-            <h2 style={{ fontSize: '32px', margin: '0 0 16px', fontFamily: 'var(--serif)' }}>Message sent!</h2>
-            <p style={{ color: '#556655', fontSize: '18px' }}>Thank you. We&apos;ll be in touch as soon as possible.</p>
+          <div className="contact-success">
+            <div className="contact-success-icon"><Icon name="check" size={40} /></div>
+            <h2>Message sent!</h2>
+            <p>Thank you. We&apos;ll be in touch as soon as possible.</p>
           </div>
         )}
       </main>

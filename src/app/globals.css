@@ -726,3 +726,510 @@ h1 em, h2 em { font-family: var(--serif); font-weight: 400; letter-spacing: -.07
     margin-bottom: 0 !important;
   }
 }
+
+/* Product Card Refactor for 2-column Mobile View */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.product-card-art {
+  overflow: hidden;
+  height: 480px;
+  position: relative;
+}
+.product-art-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.product-art-inner img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+}
+.product-badge {
+  position: absolute;
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 16px;
+  top: 24px;
+  left: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.product-card-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 4px;
+}
+.product-card-title {
+  font-size: 32px;
+  font-family: var(--serif);
+  color: #111;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 8px;
+}
+.product-card-desc {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.product-price {
+  font-size: 20px;
+  font-weight: 500;
+  color: #111;
+}
+
+/* Force 2 columns globally on mobile for product grids */
+@media (max-width: 780px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .product-grid-shop {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .product-card {
+    gap: 16px;
+  }
+  .product-card-art {
+    height: 220px !important;
+  }
+  .product-badge {
+    font-size: 9px;
+    padding: 6px 12px;
+    top: 12px;
+    left: 12px;
+  }
+  .product-card-title {
+    font-size: 18px !important;
+    margin-bottom: 4px !important;
+  }
+  .product-card-desc {
+    font-size: 12px !important;
+    margin-bottom: 16px !important;
+    /* Optional: hide description to save vertical space and align rows perfectly */
+    display: none;
+  }
+  .product-price {
+    font-size: 14px !important;
+  }
+  .product-buy-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .product-buy-btn {
+    width: 100% !important;
+    padding: 10px !important;
+    font-size: 11px !important;
+    justify-content: center !important;
+  }
+}
+
+/* Updated Product Card Redesign (Reference Image) */
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  border-radius: 200px 200px 16px 16px !important;
+  text-align: center !important;
+  padding-bottom: 24px !important;
+  /* background is set via inline style for color variations */
+}
+.product-card-art {
+  overflow: hidden !important;
+  height: 340px !important;
+  position: relative !important;
+  background: transparent !important;
+}
+.product-card-title {
+  font-size: 24px !important;
+  font-family: var(--sans) !important;
+  font-weight: 900 !important;
+  color: #111 !important;
+  text-decoration: none !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.1 !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+.product-card-desc {
+  font-size: 18px !important;
+  font-family: var(--serif) !important;
+  color: #333 !important;
+  margin-bottom: 20px !important;
+}
+.product-card-desc em {
+  font-style: italic !important;
+}
+.product-card-pricing {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+.product-price {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #111 !important;
+}
+.product-price-old {
+  font-size: 18px !important;
+  color: #555 !important;
+  text-decoration: line-through !important;
+}
+.product-price-discount {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #111 !important;
+}
+.product-buy-row {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 0 32px !important;
+}
+.product-buy-btn {
+  width: 100% !important;
+  padding: 12px !important;
+  background: transparent !important;
+  border: 2px solid #111 !important;
+  border-radius: 8px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+.product-buy-btn:hover {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 780px) {
+  .product-card {
+    border-radius: 100px 100px 12px 12px !important;
+    padding-bottom: 16px !important;
+  }
+  .product-card-art {
+    height: 180px !important;
+  }
+  .product-card-title {
+    font-size: 14px !important;
+  }
+  .product-card-desc {
+    font-size: 12px !important;
+    display: block !important;
+    margin-bottom: 12px !important;
+  }
+  .product-card-pricing {
+    gap: 6px !important;
+    margin-bottom: 12px !important;
+  }
+  .product-price {
+    font-size: 15px !important;
+  }
+  .product-price-old {
+    font-size: 11px !important;
+  }
+  .product-price-discount {
+    font-size: 10px !important;
+  }
+  .product-buy-row {
+    padding: 0 12px !important;
+  }
+  .product-buy-btn {
+    padding: 8px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Overriding previous 2-column mobile view to fix the shrinking image issue 
+   and restoring/enhancing the carousel layout */
+@media (max-width: 780px) {
+  /* Make the main product grid (Home page) a horizontal carousel */
+  .product-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 16px !important;
+    padding-bottom: 24px !important; /* give room for scrollbar */
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+    margin-left: -5vw !important; /* bleed out of container */
+    margin-right: -5vw !important;
+  }
+  
+  .product-grid .product-card {
+    min-width: 75vw !important; /* Card takes up most of the screen width */
+    scroll-snap-align: center !important;
+    flex: 0 0 auto !important;
+  }
+  
+  /* Shop page grid (single column for large perfect-sized images) */
+  .product-grid-shop {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Restore large image size for product cards on mobile */
+  .product-card-art {
+    height: 380px !important; /* Keep it large like desktop */
+  }
+
+  /* Restore larger, legible typography for the cards */
+  .product-card-title {
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+  }
+  .product-card-desc {
+    font-size: 16px !important;
+    display: block !important;
+    margin-bottom: 20px !important;
+  }
+  .product-card-pricing {
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  .product-price {
+    font-size: 22px !important;
+  }
+  .product-price-old {
+    font-size: 16px !important;
+  }
+  .product-price-discount {
+    font-size: 12px !important;
+  }
+  
+  /* Reset button size to look like the reference image */
+  .product-buy-row {
+    padding: 0 24px !important;
+  }
+  .product-buy-btn {
+    padding: 14px !important;
+    font-size: 16px !important;
+  }
+  
+  .product-card {
+    border-radius: 180px 180px 16px 16px !important;
+    padding-bottom: 24px !important;
+  }
+}
+
+/* =========================================================================
+   GLOBAL FONT THEME REDESIGN
+   Applying the "Product Card" aesthetic (Bold Uppercase Sans + Italic Serif)
+   across the entire website.
+========================================================================= */
+
+/* 1. All Headings -> Bold, Uppercase, Sans-Serif */
+h1, h2, h3, h4, h5, h6,
+.category-label h3,
+.combo-card h3,
+.story-quote-content h2,
+.checkout-step h1,
+.checkout-step h2 {
+  font-family: var(--sans) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  font-style: normal !important;
+}
+
+/* Remove any inline italic/serif emphasis inside headings */
+h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  color: inherit !important;
+}
+
+/* 2. Subtitles & Lead Paragraphs -> Italic, Serif */
+h1 + p:not(.eyebrow),
+h2 + p:not(.eyebrow),
+h3 + p:not(.eyebrow),
+p.section-copy, 
+.hero-subcopy, 
+.contact-subtitle, 
+.freeze-intro,
+.story-philosophy-text p:not(.eyebrow),
+.story-intro p:not(.eyebrow),
+.showcase-copy p:not(.eyebrow),
+.checkout-note {
+  font-family: var(--serif) !important;
+  font-style: italic !important;
+  color: #444 !important;
+}
+
+/* Ensure eyebrows remain clean sans-serif smallcaps */
+.eyebrow {
+  font-family: var(--sans) !important;
+  font-style: normal !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+}
+
+/* Ensure buttons globally match the bold sans aesthetic */
+.button {
+  font-family: var(--sans) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* =========================================================================
+   FLOATING NAVBAR REDESIGN & COMBO PACK FIX
+========================================================================= */
+
+/* Make the navbar a floating frosted capsule */
+.site-header {
+  position: sticky !important;
+  top: 20px !important;
+  margin: 0 auto !important;
+  width: min(92%, 1300px) !important;
+  border-radius: 100px !important;
+  background: rgba(253,252,248, 0.9) !important; /* Theme: Frosted Paper */
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,255,255,0.6) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06) !important;
+  z-index: 100 !important;
+  margin-bottom: -84px !important; /* Pulls content up so the navbar floats over it */
+}
+
+/* Adjust padding inside the nav container */
+.site-nav {
+  height: 64px !important;
+  padding: 0 32px !important;
+}
+
+.nav-links {
+  gap: 28px !important;
+}
+
+.nav-link {
+  font-family: var(--sans) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 13px !important;
+  letter-spacing: 0.05em !important;
+  color: #111 !important;
+}
+
+.nav-actions {
+  gap: 20px !important;
+}
+
+.nav-actions button, .nav-actions a {
+  color: #111 !important;
+}
+
+/* Mega menu tweaks for rounded navbar */
+.mega-menu {
+  top: 50px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Mobile specific floating navbar adjustments */
+@media (max-width: 780px) {
+  .site-header {
+    width: min(95%, 680px) !important;
+    top: 12px !important;
+    margin-bottom: -76px !important;
+  }
+  .site-nav {
+    padding: 0 16px !important;
+  }
+}
+
+/* Fix overlapping combo pack image over buttons */
+@media (max-width: 780px) {
+  .combo-packs {
+    transform: scale(0.6) !important;
+    right: -20px !important;
+  }
+  .combo-card-main {
+    padding: 36px 16px !important;
+  }
+}
+
+/* =========================================================================
+   PDP (PRODUCT DETAIL PAGE) REDESIGN LAYOUT
+========================================================================= */
+
+/* Desktop Layout */
+.pdp-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr !important;
+  gap: 60px !important;
+  align-items: start !important;
+}
+
+.promo-ticket {
+  clip-path: polygon(0% 10%, 5% 15%, 0% 20%, 5% 25%, 0% 30%, 5% 35%, 0% 40%, 5% 45%, 0% 50%, 5% 55%, 0% 60%, 5% 65%, 0% 70%, 5% 75%, 0% 80%, 5% 85%, 0% 90%, 5% 95%, 0% 100%, 100% 100%, 95% 95%, 100% 90%, 95% 85%, 100% 80%, 95% 75%, 100% 70%, 95% 65%, 100% 60%, 95% 55%, 100% 50%, 95% 45%, 100% 40%, 95% 35%, 100% 30%, 95% 25%, 100% 20%, 95% 15%, 100% 10%, 95% 5%, 100% 0, 0 0, 5% 5%);
+  padding: 16px 24px !important;
+  text-align: center;
+}
+
+/* Mobile Layout */
+@media (max-width: 900px) {
+  .pdp-layout {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  
+  /* On mobile, flip order so image is on top */
+  .pdp-layout .product-buy {
+    order: 2;
+  }
+  .pdp-layout .product-gallery {
+    order: 1;
+  }
+  
+  .pdp-main-image {
+    height: 350px !important;
+  }
+  
+  .pdp-add-button {
+    padding: 0 24px !important;
+  }
+}
+
+/* =========================================================================
+   FIX NAVBAR OVERLAP ON INNER PAGES
+========================================================================= */
+.site-header {
+  margin-bottom: 0 !important; /* Reset margin */
+}
+
+/* Pull the homepage hero section up so it sits beautifully behind the floating navbar */
+.hero {
+  margin-top: -104px !important;
+}
+
+@media (max-width: 780px) {
+  .hero {
+    margin-top: -96px !important;
+  }
+}
